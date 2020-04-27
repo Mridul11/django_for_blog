@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Profile
+{% endblock  %}
+
+{% block content %}
+ 
+ <div class='row'>
+    <div class='col-md-6'>
+        <div class="ui card">
+            <div class="image">
+                <img src="{{ user.profile.image.url }}">
+            </div>
+            <div class="content">
+                <a class="header">{{user.username}}</a>
+                <div class="meta">
+                <span class="date">{{ "April 27, 2020" }}</span>
+                </div>
+                <div class="description">
+                    {{ user.email }}
+                </div>
+            </div>
+            <div class="extra content">
+                <a>
+                <i class="user icon"></i>
+                22 Friends
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <form method='POST' action='' enctype='multipart/form-data'>
+            {% csrf_token %}
+            <div class="field">
+                {{ u_form|crispy }}
+                {{ p_form|crispy }}
+            </div>
+            <button type="submit" class="ui primary button">Update</button>
+        </form>
+    <div>
+</div>
+{% endblock  %}
